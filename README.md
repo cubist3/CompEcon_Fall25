@@ -72,7 +72,7 @@ Class Participation                |   10   |    10%   |
 | Aug. 28  | Th   | Python/OOP                          |        |
 | Sept. 2  | T  | Visualization tools |     [PS #2](https://github.com/jdebacker/CompEcon_Fall25/blob/main/Python/PS2.pdf)   |
 | Sept. 4   | Th  | Numerical Optimization Theory       |   |
-| Sept. 9 | T   | Numerical Optimization Theory | PS #3  |
+| Sept. 9 | T   | Numerical Optimization Theory | [PS #3](https://github.com/jdebacker/CompEcon_Fall25/blob/main/Visualization/PS3.pdf)  |
 | Sept. 11 | Th  |  Optimizers, Root-Finders in Python  |      |
 | Sept. 16 | T   | Optimization Application: GMM  |       |
 | Sept. 18 | Th  | Two-Sided Matching Models       |        |

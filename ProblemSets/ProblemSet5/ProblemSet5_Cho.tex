@@ -1,0 +1,126 @@
+\documentclass[11pt]{article}
+
+\usepackage[top=0.5in, bottom=0.5in, left=0.85in, right=0.7in]{geometry}
+\usepackage{authblk}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{siunitx}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{indentfirst}
+\usepackage{longtable}
+\usepackage{makecell} % Add this in your preamble
+\usepackage{needspace}
+
+
+\usepackage[backend=biber, style=numeric, sorting=unsrt]{biblatex}
+\addbibresource{References.bib} % Ensure your .bib file name matches
+
+\usepackage{setspace}
+\onehalfspacing
+\setlength{\parskip}{1em}
+\title{ % \large 
+  \textbf{Computational Economics: Problem Set 5}}
+  % Boosting Wearable Sales: How Technology Development and Research Funding Impact Consumer Adoption and Market Growth
+
+\author{\\Emma (Sunwoo) Cho}
+
+\makeatletter
+\let\inserttitle\@title
+\let\insertauthor\@author
+\makeatother
+
+\begin{document}
+
+\begin{center}
+  \LARGE{\inserttitle}
+
+  \insertauthor
+\end{center}
+%------------------------------------------------------------------------------
+\section*{Part A \& B}
+\begin{itemize}
+    \item 3 figures and 3 tables, interpretations for each of 3 models (variation of each)
+    \item Codes (in R), clean function; model fitting function; visualisation function
+\end{itemize}
+
+\section*{Models and Specifications}
+\begin{itemize}
+    \item The economic problem is looking the impact of the tax cut event in Kansas in 2012 (occurred in Q2) on the ln (state GDP per capita).
+    \item Here, the main identification strategy for Augmented Synthetic Control (ASCM) variants to estimate the Average Treatment Effect on the Treated (ATT): the post-2012Q2 average gap between Kansas and its synthetic control.
+    \item 3 specifications:
+    \begin{enumerate}
+        \item ASCM (Ridge): starts from SCM and augments with a ridge outcome model, allowing limited extrapolation to improve pre-trend fit while penalising large deviations.
+        \item ASCM (Fixed Effects): SCM with an additive unit+time structure (demeaned/two-way FE augmentation) to remove level differences and align dynamics.
+        \item ASCM (Generalised Synthetic Control Method (Gen-SC) - Matrix Completion method): augments with a low-rank interactive fixed-effects model to capture latent factors.
+    \end{enumerate}
+
+\section*{Figures}
+\begin{itemize}
+    \item 3 figures and 3 tables, interpretations for each of 3 models (variation of each)
+    \end{itemize}
+    
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\linewidth]{fig1_ascm_ridge.png}
+        %\caption{Caption}
+        %\label{fig:placeholder}
+    \end{figure}
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\linewidth]{fig2_ascm_fixedeff_gap.png}
+       % \caption{Caption}
+        %\label{fig:placeholder}
+    \end{figure}
+
+        \begin{figure}
+        \centering
+        \includegraphics[width=0.8\linewidth]{fig3_ascm_gsyn.png}
+        %\caption{Caption}
+        %\label{fig:placeholder}
+    \end{figure}
+\end{itemize}
+
+\begin{itemize}
+    \item figure 1: for re-treatment, fit gaps oscillate around 0 very tightly, which means it has a good pre-trend balance. For post-treatment: the gap drops and stays negative approximately (−0.03 to −0.06) for most post years. Kansas’s GSP per capita is about 3–6\% lower than its synthetic control after the 2012 tax cuts, with bands mostly below zero. This is consistent with a negative effect.
+    \item figure 2: showing very similar as figure 1; it is a robustness check form using a fixed effect augmentation and it gives very similar negative impacts, supporting the ridge result.
+    \item figure 3: generalised synthetic control using matrix completion approach - for pre-treatment, it balanced on average, but with a bit more wiggle in late pre-period. For post-treatment, the line shows a small positive bump early, then meanders; the gray band is wide and often covers zero. 
+\end{itemize}
+
+\begin{table}[t]
+\centering
+\caption{Average Treatment on Treated (ATT) estimates across 3 specifications (model fitting results)}
+\label{tab:ascm_att_simple}
+\begin{tabular}{lccc}
+\hline
+Model & N\_post & ATT (log) & Percent \\
+\hline
+ASCM (Ridge)         & 16 & 0.036 & 3.7 \\
+ASCM (Fixed Effects) & 16 & 0.064 & 6.6 \\
+ASCM (GSYN)          & 16 & 0.094 & 9.9 \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection*{Interpretation}
+The table shows the average treatment effects on the log scale and convert them to percentages via
+$100\,[\exp(\text{ATT})-1]$,
+And these estimates are in the percentage column.
+
+\begin{itemize}
+  \item \textbf{ASCM (Ridge):} $\text{ATT}=0.036 \; \approx 3.7\%$ higher outcome for treated units in the post period.
+  \item \textbf{ASCM (Fixed Effects):} $\text{ATT}=0.064 \; \approx 6.6\%$.
+  \item \textbf{ASCM (GSYN):} $\text{ATT}=0.094 \; \approx 9.9\%$.
+\end{itemize}
+
+\noindent All three estimates are positive and increase in magnitude from Ridge to Fixed Effects one to generalised synthetic control method. This pattern is consistent with a robust positive effect and with larger estimated effect after allowing richer latent trends (generalised SC accommodates interactive factors) compared to stronger shrinkage (ridge tends to be conservative).
+
+\clearpage
+\Needspace{0.92\textheight} % keep both figures on the same page
+
+\end{document}

@@ -1,0 +1,28 @@
+
+\begin{table}[ht]
+    \centering
+    \caption{Structural Estimation Results (SMM)}
+    \label{tab:smm_results}
+    \begin{threeparttable}
+    \begin{tabular}{lccc}
+        \toprule
+        Parameter & Estimate & Std. Error & Interpretation \\
+        \midrule
+        Depreciation Rate ($\delta$) & 0.1004 & (0.0041) & 10.0\% annual value loss \\
+        Tax Capitalization ($\lambda$) & 0.8390 & (0.3802) & \pounds 0.84 price drop per \pounds 1 NPV tax \\
+        \midrule
+        \multicolumn{4}{l}{\textit{Hypothesis Tests:}} \\
+        $H_0: \lambda = 0$ & \multicolumn{3}{c}{$t = 2.21$, $p = 0.0273$} \\
+        $H_0: \lambda = 1$ & \multicolumn{3}{c}{$t = -0.42$, $p = 0.6721$} \\
+        \midrule
+        Model Fixed Effects & \multicolumn{3}{c}{15 models} \\
+        Moment Conditions & \multicolumn{3}{c}{72} \\
+        $R^2$ & \multicolumn{3}{c}{0.924} \\
+        \bottomrule
+    \end{tabular}
+    \begin{tablenotes}
+        \small
+        \item \textit{Note:} Bootstrap standard errors (200 replications). NPV calculated with $r=0.05$, $T=5$ years.
+    \end{tablenotes}
+    \end{threeparttable}
+\end{table}

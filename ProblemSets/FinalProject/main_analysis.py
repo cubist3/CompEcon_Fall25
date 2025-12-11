@@ -20,7 +20,7 @@ warnings.filterwarnings('ignore')
 np.random.seed(42)
 print("loading and cleaning data")
 
-df = pd.read_csv('data/toyota.csv')
+df = pd.read_csv('toyota.csv')
 df.columns = df.columns.str.lower().str.strip()
 n_original = len(df)
 
